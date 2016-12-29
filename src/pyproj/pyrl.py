@@ -9,7 +9,7 @@ LIMIT_FPS = 20  #20 frames-per-second maximum
  
 def handle_keys():
     global playerx, playery
- 
+    
     #key = libtcod.console_check_for_keypress()  #real-time
     key = libtcod.console_wait_for_keypress(True)  #turn-based
  
@@ -21,9 +21,26 @@ def handle_keys():
         return True  #exit game
  
     #movement keys
+	
     if libtcod.console_is_key_pressed(libtcod.KEY_KP8):
         playery -= 1
- 
+		
+    elif libtcod.console_is_key_pressed(libtcod.KEY_KP7):
+        playery -= 1
+        playerx -= 1
+
+    elif libtcod.console_is_key_pressed(libtcod.KEY_KP9):
+        playery -= 1
+        playerx += 1
+		
+    elif libtcod.console_is_key_pressed(libtcod.KEY_KP1):
+        playery += 1
+        playerx -= 1
+	
+    elif libtcod.console_is_key_pressed(libtcod.KEY_KP3):
+        playery += 1
+        playerx += 1
+	
     elif libtcod.console_is_key_pressed(libtcod.KEY_KP2):
         playery += 1
  
@@ -32,6 +49,9 @@ def handle_keys():
  
     elif libtcod.console_is_key_pressed(libtcod.KEY_KP6):
         playerx += 1
+	
+	
+		
  
 		
 		
@@ -47,10 +67,12 @@ playerx = SCREEN_WIDTH/2
 playery = SCREEN_HEIGHT/2
  
 while not libtcod.console_is_window_closed():
- 
+
+	
     libtcod.console_set_default_foreground(0, libtcod.white)
     libtcod.console_put_char(0, playerx, playery, '@', libtcod.BKGND_NONE)
- 
+    
+	
     libtcod.console_flush()
  
     libtcod.console_put_char(0, playerx, playery, ' ', libtcod.BKGND_NONE)
